@@ -20,7 +20,16 @@ server.use('/api/v1/auth', authRouter)
 
 server.use(errorMiddleware)
 
-server.listen(PORT, () => {
-  connectDB()
-  console.log(`Server running on port ${PORT}`)
-})
+const start = async () => {
+  try {
+    await connectDB()
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`)
+    })
+  } catch (error) {
+    console.error('Failed to start server', error)
+    process.exit(1)
+  }
+}
+
+start()
