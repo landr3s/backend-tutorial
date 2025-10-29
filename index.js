@@ -7,12 +7,14 @@ import authRouter from './routes/auth.routes.js'
 import { errorMiddleware } from './middlewares/error.middleware.js'
 import { PORT } from './config/env.js'
 import cookieParser from 'cookie-parser'
+import { arjectMiddleware } from './middlewares/arcjet.middleware.js'
 
 const server = express()
 
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
 server.use(cookieParser())
+server.use(arjectMiddleware)
 
 server.use('/api/v1/users', userRouter)
 server.use('/api/v1/subscriptions', subscriptionRouter)

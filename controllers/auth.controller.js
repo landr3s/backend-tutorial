@@ -1,4 +1,3 @@
-import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { EXPIRES_IN, JWT_SECRET } from '../config/env.js'
@@ -31,8 +30,6 @@ export const signUp = async (req, res, next) => {
       token,
       user: newUsers[0]
     })
-
-    await session.commitTransaction()
   } catch (error) {
     next(error)
   }

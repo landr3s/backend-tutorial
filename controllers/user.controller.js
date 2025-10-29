@@ -1,6 +1,5 @@
 import User from '../models/user.model.js'
 import bcrypt from 'bcrypt'
-import mongoose from 'mongoose'
 export const getUsers = async (req, res, next) => {
   try {
     const users = await User.find({})
@@ -32,8 +31,6 @@ export const createUser = async (req, res, next) => {
         user: newUsers[0]
       }
     })
-
-    await session.commitTransaction()
   } catch (error) {
     next(error)
   }
